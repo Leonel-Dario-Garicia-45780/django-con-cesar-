@@ -16,6 +16,19 @@ from pathlib import Path
 #importaciones de las librerias necesarias
 import os
 
+
+""" STATIC_URL= os.path.join(BASE_DIR,'/static/') """
+
+#sugerencia e chat de sair
+BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# url de archivos estaticos
+STATIC_URL= '/static/'
+MEDIA_URL='/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR,"media")
+STATIC_ROOT= os.path.join(BASE_DIR,"static")
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

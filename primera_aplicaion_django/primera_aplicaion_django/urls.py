@@ -19,10 +19,21 @@ from django.urls import path
 # importamos vew
 from appprimera_aplicacion_django import views
 
+# mas importaciones
+from django.conf import settings
+from django.conf.urls.static import static
+
 # url son las vistas o paginas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #la funcion inicio que esta en views.py
-    path('', views.inicio )# esta es la ruta raiz
+    path('', views.inicio ),# esta es la ruta raiz
+    path('agregar_categoria/', views.agergar_categoria) # ruta de agregar categoria
 ]
+
+
+# debug
+if settings.DEBUG:
+    urlpatterns += static(settings.MDEIA_URL, document_root=settings.MEDIA_ROOT)
+
