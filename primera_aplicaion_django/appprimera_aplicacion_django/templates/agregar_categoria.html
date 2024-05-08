@@ -6,8 +6,10 @@
     <title>agregar categorias</title>
 </head>
 <body>
+    <h1> estas en categorias</h1>
     <form action="/agregar_categoria/" method="post">
-        <input type="text" id="nombre_categoria" name="nombre_categoria">
+        {% csrf_token %}
+        <input type="text" id="nombre_categoria" name = "nombre_categoria">
 
         <button type="submit">agregar</button>
     </form>

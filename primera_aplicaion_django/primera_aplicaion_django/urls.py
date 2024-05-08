@@ -29,7 +29,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #la funcion inicio que esta en views.py
     path('', views.inicio ),# esta es la ruta raiz
-    path('agregar_categoria/', views.agregar_categoria) # ruta de agregar categoria
+    path('agregar_categoria/', views.agregar_categoria  ), # ruta de agregar categoria
+    path('agregar_producto/',  views.agregar_producto),
+
 ]
 
 

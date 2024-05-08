@@ -93,6 +93,7 @@ WSGI_APPLICATION = 'primera_aplicaion_django.wsgi.application'
 
 DATABASES = {
     'default': {
+        #! coneccion a mongo Atlas
         'ENGINE':'djongo',
         'NAME':'django_mongodb',
         'CLIENT':{
