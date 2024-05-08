@@ -10,7 +10,7 @@ class Producto(models.Model):
 
 class Categoria(models.Model):
     get_nombre= models.CharField(max_length=30,unique=True)
-    
+
 
 
 

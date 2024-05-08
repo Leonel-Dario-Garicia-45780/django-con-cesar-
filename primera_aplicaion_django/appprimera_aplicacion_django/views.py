@@ -13,7 +13,7 @@ def inicio(request):
     return render (request, "inicio.html")
 
 # funcion agregar categoria, y la vista
-def agergar_categoria(request):
+def agregar_categoria(request):
     try:
         nombre = request.POST["nombre_categoria"]
         categoria= Categoria(get_nombre=nombre)

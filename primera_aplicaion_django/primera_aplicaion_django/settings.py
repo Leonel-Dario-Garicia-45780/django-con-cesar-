@@ -46,7 +46,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+#! aqui ban los modulos o aplicaciones del proyecto como por ejemplo "appprimera_aplicacion_django"
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -93,15 +93,21 @@ WSGI_APPLICATION = 'primera_aplicaion_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',# aqui puede ir cualquier base de datos por ejemplo pymongo
+
+        'ENGINE':'djongo',
+        'NAME':'django_mongodb',
+        'HOST':'localhost',
+        'PORT':'27017'
+
+
+    }
+}
+"""     'ENGINE': 'django.db.backends.mysql',# aqui puede ir cualquier base de datos por ejemplo pymongo
         'NAME': 'aplicacion_1_django',
         'USER': 'root',
         'PASSWORD':'',
         'HOST':'localhost',
-        'PORT':'3306'
-    }
-}
-
+        'PORT':'3306' """
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

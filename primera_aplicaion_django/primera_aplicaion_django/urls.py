@@ -29,11 +29,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #la funcion inicio que esta en views.py
     path('', views.inicio ),# esta es la ruta raiz
-    path('agregar_categoria/', views.agergar_categoria) # ruta de agregar categoria
+    path('agregar_categoria/', views.agregar_categoria) # ruta de agregar categoria
 ]
 
 
 # debug
 if settings.DEBUG:
-    urlpatterns += static(settings.MDEIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
