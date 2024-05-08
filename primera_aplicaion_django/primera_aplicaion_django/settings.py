@@ -93,16 +93,24 @@ WSGI_APPLICATION = 'primera_aplicaion_django.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE':'djongo',
+        'NAME':'django_mongodb',
+        'CLIENT':{
+            'host':'mongodb+srv://gun45780:adso145780@cluster0.feqs5gd.mongodb.net/?retryWrites=true&w=majority'
+        }
 
+    }
+}
+"""  #! coneccion con mondobd local
         'ENGINE':'djongo',
         'NAME':'django_mongodb',
         'HOST':'localhost',
         'PORT':'27017'
+"""
 
 
-    }
-}
-"""     'ENGINE': 'django.db.backends.mysql',# aqui puede ir cualquier base de datos por ejemplo pymongo
+"""     #! coneccion con myqsl local
+        'ENGINE': 'django.db.backends.mysql',# aqui puede ir cualquier base de datos por ejemplo pymongo
         'NAME': 'aplicacion_1_django',
         'USER': 'root',
         'PASSWORD':'',
