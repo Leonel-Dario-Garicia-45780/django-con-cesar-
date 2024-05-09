@@ -6,19 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/agregar_producto/" method="post">
+    <form action="/agregar_producto/" enctype="multipart/form-data" method="post">
         {% csrf_token %}
         <input type="text" name="id"          id="id"          placeholder="id" >
         <input type="text" name="nombre"      id="nombre"      placeholder="nombre" >
         <input type="text" name="precio"      id="precio"      placeholder="precio" >
         <input type="text" name="desceipcion" id="desceipcion" placeholder="decripcion" >
         <input type="file" name="imagen"      id="imagen"      placeholder="imagen" >
-        <select name="id_categoria" id="id_categoria"  >
-            <option value=""> categoria </option>
-            {% for categoria in categorias%}
-                <option value="{{categoria.id}}">{{categoria.get_nombre}}</option>
-            {% endfor  %}
-        </select>
+        
+<!--         <select name="id_categoria" id="id_categoria">
+            <option value="">categoria</option>
+            {% for c in categorias %}
+                <option value="{{ c.id }}">{{ c.get_nombre }}</option>
+            {% endfor %}
+        </select> -->
         <button type="submit"> agregar producto </button>
     </form>
 </body>
