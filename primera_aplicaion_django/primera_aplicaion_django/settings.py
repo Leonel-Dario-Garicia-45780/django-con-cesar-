@@ -92,31 +92,40 @@ WSGI_APPLICATION = 'primera_aplicaion_django.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+            # ? correcciones realizadas por el instructor Cesar
     'default': {
         #! coneccion a mongo Atlas
         'ENGINE':'djongo',
         'NAME':'django_mongodb',
-        'CLIENT':{
-            'host':'mongodb+srv://gun45780:adso145780@cluster0.feqs5gd.mongodb.net/?retryWrites=true&w=majority'
-        }
-
-    }
-}
-"""  #! coneccion con mondobd local
-        'ENGINE':'djongo',
-        'NAME':'django_mongodb',
-        'HOST':'localhost',
-        'PORT':'27017'
-"""
-
-
-"""     #! coneccion con myqsl local
-        'ENGINE': 'django.db.backends.mysql',# aqui puede ir cualquier base de datos por ejemplo pymongo
+        'CLIENT':{ #? 1
+            'host':'mongodb+srv://gun45780:adso145780@cluster0.feqs5gd.mongodb.net/django_mongodb?retryWrites=true&w=majority'
+        }                                                     #! nombre agregado  ^^^^^^^^^^^^^^
+        
+    },
+    #? 2
+    #! coneccion con mondobd local
+    'mongolocal': {
+        'ENGINE': 'djongo',
+        'NAME': 'django_mongodb',
+        'HOST': 'localhost',
+        'PORT': '27017'
+    },
+    #! coneccion con myqsl local
+    'mysql': {
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'aplicacion_1_django',
         'USER': 'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3306' """
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    #! coneccion a sqlite (local)
+    'sqlite': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'gestionpeliculas.db',
+    },
+    #? fin de las correcciones en este archivo
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

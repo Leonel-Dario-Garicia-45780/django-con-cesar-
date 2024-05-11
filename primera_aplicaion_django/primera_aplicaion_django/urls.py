@@ -29,9 +29,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #la funcion inicio que esta en views.py
     path('', views.inicio ),# esta es la ruta raiz
-    path('agregar_categoria/', views.agregar_categoria  ), # ruta de agregar categoria
-    path('agregar_producto/',  views.agregar_producto),
-    path('lista_productos/',  views.lista_productos  ),
+    path('agregar_categoria/', views.agregar_categoria), # ruta de agregar categoria
+    path('agregar_producto/',  views.agregar_producto ),
+    path('vista_agregar_producto/',  views.vista_agregar_productos),#? ruta gregada por el instructor Cesar
+    path('lista_productos/',   views.lista_productos  ),
+    path('editar_producto/',   views.editar_producto  ),
 
 ]
 

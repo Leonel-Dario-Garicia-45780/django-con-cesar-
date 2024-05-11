@@ -3,6 +3,8 @@ from django.shortcuts import render
 # para devolver errores
 from django.db import Error
 from bson import ObjectId
+import os
+from django.conf import settings
 
 # importar modelos
 from appprimera_aplicacion_django.models import Producto, Categoria
@@ -21,6 +23,7 @@ def inicio(request):
 #todo lo relacionado con categorias
 
 # funcion agregar categoria, y la vista
+
 def agregar_categoria(request):
     mensaje=""
     if request.method=='POST':
@@ -43,9 +46,9 @@ def eliminar_categori(request):
 #? //////////////////////////////////////////////////////////////
 
 #todo lo relacionado con productos (por el momento lo no pongo relaciones porque no logor resolver esos errores)
-
+# ?   correcciones del instructor Cesar
 def vista_agregar_productos(request):
-    categorias=Categoria.objects.all()
+    categorias=Categoria.objects.all().values()#? correccion 1 agregado el values
     retorno={"categorias":categorias}
     return render(request, "agregar_producto.html", retorno )
 
@@ -57,34 +60,38 @@ def agregar_producto(request):
             id            = request.POST["id"]
             nombre_objeto        = request.POST["nombre"]
             precio_objeto        = request.POST["precio"]
-            decripcion_objeto    = request.POST["desceipcion"]
+            decripcion_objeto    = request.POST["descripcion"]
             imagen_objeto        = request.FILES["imagen"]
-            #id_categoria  = ObjectId(request.POST["id_categoria"]) 
+            #? tener en cuenta, para mysql y sqlite
+            #? id_categoria = int(request.POST["id_categoria"])
+            id_categoria  = ObjectId(request.POST["id_categoria"]) #! para mongodb
 
             print("ID:", id)
             print("Nombre:", nombre_objeto)
             print("Precio:", precio_objeto)
             print("Descripción:", decripcion_objeto)
             print("Imagen:", imagen_objeto)
-            # print("ID de Categoría:", id_categoria)
+            print("ID de Categoría:", id_categoria)
 
-
-            #categoria_objeto = Categoria.objects.get(pk=str(id_categoria))
+            categoria_objeto = Categoria.objects.get(pk=id_categoria)
 
             producto=Producto.objects.create(
                 id_producto = id,
                 nombre      = nombre_objeto,
                 precio      = precio_objeto,
                 descripcion = decripcion_objeto,
-                imagen      = imagen_objeto
-                #categoria   = categoria_objeto 
+                imagen      = imagen_objeto,
+                categoria   = categoria_objeto 
             )
-
+            #? correccion 2 , salvar productos, sin eso ugial funciono que raro
+            # linea nueva
+            producto.save()
+#? fin de las correcciones en este archivo  
             mensaje="producto agregado correctamente"
             print(mensaje)
         except Error as error:
             mensaje=str(error)
-    
+
     #! esto es para el select del html
     categorias=Categoria.objects.all()
     retorno={"mensaje":mensaje, "categorias":categorias}
@@ -98,15 +105,34 @@ def lista_productos(request):
     return render(request, "lista_productos.html", retorno)
 
 def editar_producto(request):
-    id_prodicto_editado= ObjectId(request.POST['id_producto'])
+    try:
+        id_prodicto_editado= ObjectId(request.POST['id_producto'])
 
-    producto_editado= Producto.objects.get(pk=id_prodicto_editado)
-    producto_editado.nombre=
-    producto_editado.precio=
-    producto_editado.descripcion=
-    producto_editado.imagen=
-    producto_editado.categoria=
+        producto_editado= Producto.objects.get(pk=id_prodicto_editado)
+        producto_editado.nombre=request.POST['nombre_producto_editado']
+        producto_editado.precio=request.POST['precio_producto_editado']
+        producto_editado.descripcion=request.POST['descripcion_producto_editado']
+        imagen_edit=request.FILES['imagen_producto_editado']
+        if(imagen_edit):
+            if(producto_editado.imagen !=""):
+                os.remove(os.path.join(settings.MEDIA_ROOT+"/"+str(producto_editado.imagen)))
+            producto_editado.imagen=imagen_edit
+        
+        #producto_editado.categoria=
 
-    return render(request, ""  )
+        producto_editado.save()
+        mensaje="productoeditado correctamente"
+    except Error as error:
+        mensaje=str(error)
+
+    retorno={"mensaje":mensaje}
+    return render(request, "editar_producto.html", retorno  )
+
+
+def eliminar_producto(request):
+    try:
+        1
+    except Error as error:
+        mensaje=str(error)
 
 #todo fin de todo lo relacionado con productos (sin relaciones para evitar errores)

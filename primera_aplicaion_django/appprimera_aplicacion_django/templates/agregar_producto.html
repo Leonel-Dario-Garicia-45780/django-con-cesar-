@@ -11,15 +11,15 @@
         <input type="text" name="id"          id="id"          placeholder="id" >
         <input type="text" name="nombre"      id="nombre"      placeholder="nombre" >
         <input type="text" name="precio"      id="precio"      placeholder="precio" >
-        <input type="text" name="desceipcion" id="desceipcion" placeholder="decripcion" >
+        <input type="text" name="descripcion" id="descripcion" placeholder="decripcion" >
         <input type="file" name="imagen"      id="imagen"      placeholder="imagen" >
         
-<!--         <select name="id_categoria" id="id_categoria">
+        <select name="id_categoria" id="id_categoria">
             <option value="">categoria</option>
-            {% for c in categorias %}
-                <option value="{{ c.id }}">{{ c.get_nombre }}</option>
+            {% for c in categorias %} <!-- ?  correccion, se cambia el id por pk (en mongo)  -->
+                <option value="{{ c.pk }}">{{ c.get_nombre }}</option>
             {% endfor %}
-        </select> -->
+        </select> 
         <button type="submit"> agregar producto </button>
     </form>
 </body>
