@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # capturar el error si ocurre algo
 # para devolver errores
 from django.db import Error
@@ -28,8 +28,12 @@ def agregar_categoria(request):
     mensaje=""
     if request.method=='POST':
         try:
+            id= request.POST["id_categoria"]
             nombre = request.POST["nombre_categoria"]
-            categoria= Categoria(get_nombre=nombre)
+            categoria= Categoria(
+                id_categoria=id,
+                get_nombre=nombre
+                )
             categoria.save()
             mensaje= "categoria agregada correctamente"
         except Error as error:
@@ -38,8 +42,25 @@ def agregar_categoria(request):
     retorno={"mensaje":mensaje}
     return render(request, "agregar_categoria.html", retorno)
 
-def eliminar_categori(request):
-    return render(request, "" )
+#! no funciona y no se porque
+def eliminar_categoria(request, ):
+    mensaje = ""
+    categorias=Categoria.objects.all().values()#? correccion 1 agregado el values
+    retorno={"categorias":categorias}
+    if request.method=='POST':
+        eliminar= request.POST["categoria_eliminar"]
+        try:
+            # Buscamos la categoría por su id
+            categoria = Categoria.objects.get(get_nombre=eliminar)
+            # Eliminamos la categoría
+            categoria.delete()
+            mensaje = "Categoría eliminada correctamente"
+
+        except Exception as error:
+            mensaje = str(error)
+    
+    # Redireccionar a la página de listar categorías
+    return render(request, "eliminar_categoria.html", retorno)
 
 #todo fin de todo lo relacionado con categorias
 

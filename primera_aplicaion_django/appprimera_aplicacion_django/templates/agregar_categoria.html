@@ -9,6 +9,8 @@
     <h1> estas en categorias</h1>
     <form action="/agregar_categoria/" method="post">
         {% csrf_token %}
+
+        <input type="text" id="id_categoria" name = "id_categoria">
         <input type="text" id="nombre_categoria" name = "nombre_categoria">
 
         <button type="submit">agregar</button>

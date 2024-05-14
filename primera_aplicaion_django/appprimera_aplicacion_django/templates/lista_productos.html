@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
+    {% load static %}
+    <script src="../static/js/peticiones.js"></script>
     <table>
         <thead>
             <th>id</th>
@@ -13,7 +15,8 @@
             <th>precio</th>
             <th>descripcion</th>
             <th>imagen</th>
-            <th>categoria</th>
+           <!--  <th>categoria</th> -->
+            <th>acciones</th>
         </thead>
         <tbody>
             {% for p in productos %}
@@ -25,7 +28,12 @@
                 <td>
                     <img src="../../media/{{p.imagen}}" width="50" height="50">
                 </td>
-                <td>{{p.categoria_id}}</td>
+              <!--   <td>{{p.categoria_id}}</td> -->
+                <td>
+                    <a href=""><button> editar producto</button></a>
+
+                    <button onclick="eliminar_producto('{{p.pk}}')" > eliminar</button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
