@@ -7,6 +7,7 @@
 </head>
 <body>
     <form action="/agregar_categoria/" method="post">
+        {% csrf_token %}
         <input type="text" id="nombre_categoria" name="nombre_categoria">
 
         <button type="submit">agregar</button>

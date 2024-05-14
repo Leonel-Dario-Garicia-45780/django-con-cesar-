@@ -1,0 +1,5 @@
+.contenedor_direcciones{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

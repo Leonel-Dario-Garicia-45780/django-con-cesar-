@@ -14,14 +14,15 @@ def inicio(request):
 
 # funcion agregar categoria, y la vista
 def agergar_categoria(request):
-    try:
-        nombre = request.POST["nombre_categoria"]
-        categoria= Categoria(get_nombre=nombre)
-        categoria.save()
-        mensaje= "categoria agregada correctamente"
-    except Error as error:
-        mensaje=str(error)
-    retorno={"mensaje":mensaje}
+    if request.method=='POST':
+        try:
+            nombre = request.POST["nombre_categoria"]
+            categoria= Categoria(get_nombre=nombre)
+            categoria.save()
+            mensaje= "categoria agregada correctamente"
+        except Error as error:
+            mensaje=str(error)
+        retorno={"mensaje":mensaje}
     
-    return render(request, "agregr_categoria.html", retorno)
+    return render(request, "agregar_categoria.html", retorno)
 
