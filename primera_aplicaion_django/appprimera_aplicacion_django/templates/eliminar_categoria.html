@@ -8,13 +8,14 @@
 <body>
     <form action="/eliminar_categoria/" method="post">
         {% csrf_token %}
-        <label for="">seleccione la categoria que quiere eliminar</label>
+<!--         <label for="">seleccione la categoria que quiere eliminar</label>
         
         <select name="categoria_eliminar" id="">
             {% for c in categorias %}
                 <option value="{{c.id_categoria }}">{{c.get_nombre}}</option>
             {% endfor %}
-        </select>
+        </select> -->
+        <input type="text" name="categoria_eliminar">
 
         <button  type="submit"> eliminar </button>
     </form>

@@ -43,7 +43,7 @@ def agregar_categoria(request):
     return render(request, "agregar_categoria.html", retorno)
 
 #! no funciona y no se porque
-def eliminar_categoria(request, ):
+""" def eliminar_categoria(request, ):
     mensaje = ""
     categorias=Categoria.objects.all().values()#? correccion 1 agregado el values
     retorno={"categorias":categorias}
@@ -60,8 +60,23 @@ def eliminar_categoria(request, ):
             mensaje = str(error)
     
     # Redireccionar a la página de listar categorías
-    return render(request, "eliminar_categoria.html", retorno)
+    return render(request, "eliminar_categoria.html", retorno) """
 
+#! otra forma
+#! tampoco sirve
+def eliminar_categoria(request):
+    mensaje=""
+    try:
+        cate_eliminar= request.POST['categoria_eliminar']
+        print(cate_eliminar)
+        categoria=Categoria.objects.get(get_nombre= cate_eliminar)
+        categoria.delete()
+        mensaje="categoria eliminada"
+        print(mensaje)
+    except Exception as error:
+        mensaje = str(error)
+
+    return render(request, "eliminar_categoria.html" )
 #todo fin de todo lo relacionado con categorias
 
 #? //////////////////////////////////////////////////////////////
@@ -85,16 +100,16 @@ def agregar_producto(request):
             imagen_objeto        = request.FILES["imagen"]
             #? tener en cuenta, para mysql y sqlite
             #? id_categoria = int(request.POST["id_categoria"])
-            id_categoria  = ObjectId(request.POST["id_categoria"]) #! para mongodb
+    #        id_categoria  = ObjectId(request.POST["id_categoria"]) #! para mongodb
 
-            print("ID:", id)
-            print("Nombre:", nombre_objeto)
-            print("Precio:", precio_objeto)
-            print("Descripción:", decripcion_objeto)
-            print("Imagen:", imagen_objeto)
-            print("ID de Categoría:", id_categoria)
+#            print("ID:", id)
+#            print("Nombre:", nombre_objeto)
+#            print("Precio:", precio_objeto)
+#            print("Descripción:", decripcion_objeto)
+#            print("Imagen:", imagen_objeto)
+#            print("ID de Categoría:", id_categoria)
 
-            categoria_objeto = Categoria.objects.get(pk=id_categoria)
+    #        categoria_objeto = Categoria.objects.get(pk=id_categoria)
 
             producto=Producto.objects.create(
                 id_producto = id,
@@ -102,7 +117,7 @@ def agregar_producto(request):
                 precio      = precio_objeto,
                 descripcion = decripcion_objeto,
                 imagen      = imagen_objeto,
-                categoria   = categoria_objeto 
+    #            categoria   = categoria_objeto 
             )
             #? correccion 2 , salvar productos, sin eso ugial funciono que raro
             # linea nueva

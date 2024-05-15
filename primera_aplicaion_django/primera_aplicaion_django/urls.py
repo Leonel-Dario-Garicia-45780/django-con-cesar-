@@ -35,6 +35,7 @@ urlpatterns = [
     path('vista_agregar_producto/',  views.vista_agregar_productos),#? ruta gregada por el instructor Cesar
     path('lista_productos/',   views.lista_productos  ),
     path('editar_producto/',   views.editar_producto  ),
+ #   path('eliminar_producto/',   views.eliminar_producto  ),
 
 ]
 
