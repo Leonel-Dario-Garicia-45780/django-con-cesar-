@@ -98,7 +98,7 @@ DATABASES = {
         'ENGINE':'djongo',
         'NAME':'django_mongodb',
         'CLIENT':{ #? 1
-            'host':'mongodb+srv://gun45780:adso145780@cluster0.feqs5gd.mongodb.net/django_mongodb?retryWrites=true&w=majority'
+            'host':'mongodb+srv://gun45780:adso145780@cluster0.feqs5gd.mongodb.net/?retryWrites=true&w=majority'
         }                                                     #! nombre agregado  ^^^^^^^^^^^^^^
         
     },

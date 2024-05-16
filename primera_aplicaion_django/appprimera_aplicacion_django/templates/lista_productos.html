@@ -32,7 +32,7 @@
                 <td>
                     <a href=""><button> editar producto</button></a>
 
-                    <button onclick="eliminar_producto('{{p.pk}}')" > eliminar</button>
+                    <a href="/eliminar_producto/{{p.nombre}}"> eliminar </a>
                 </td>
             </tr>
             {% endfor %}

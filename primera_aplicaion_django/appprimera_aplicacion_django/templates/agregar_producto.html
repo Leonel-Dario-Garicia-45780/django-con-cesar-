@@ -14,13 +14,13 @@
         <input type="text" name="descripcion" id="descripcion" placeholder="decripcion" >
         <input type="file" name="imagen"      id="imagen"      placeholder="imagen" >
         
-<!--          <select name="idcategoria" id="idcategoria">
-            <option value="">categoria</option>  -->
+         <select name="idcategoria" id="idcategoria">
+            <option value="">categoria</option>  
             <!-- ?  correccion, se cambia el id por pk (en mongo)  -->
-<!--             {% for c in categorias %}
-                <option value="{{c.pk }}">{{c.get_nombre}}</option>
+            {% for c in categorias %}
+                <option value="{{c.id_categoria }}">{{c.get_nombre}}</option>
             {% endfor %}
-        </select>   -->
+        </select>  
         <button type="submit"> agregar producto </button>
     </form>
 </body>

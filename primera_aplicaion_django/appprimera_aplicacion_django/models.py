@@ -7,7 +7,7 @@ from djongo import models
 # ejemplo
 
 class Categoria(models.Model):
-    id_categoria=models.ObjectIdField(primary_key=True)
+    id_categoria=models.IntegerField(unique=True)
     get_nombre= models.CharField(max_length=30,unique=True)
 
 class Producto(models.Model):

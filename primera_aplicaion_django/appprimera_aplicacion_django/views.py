@@ -64,12 +64,12 @@ def agregar_categoria(request):
 
 #! otra forma
 #! tampoco sirve
-def eliminar_categoria(request):
+def eliminar_categoria(request,  nombre):
     mensaje=""
     try:
         cate_eliminar= request.POST['categoria_eliminar']
         print(cate_eliminar)
-        categoria=Categoria.objects.get(get_nombre= cate_eliminar)
+        categoria=Categoria.objects.get(get_nombre = nombre)
         categoria.delete()
         mensaje="categoria eliminada"
         print(mensaje)
@@ -93,14 +93,14 @@ def agregar_producto(request):
     mensaje=""
     if request.method=="POST":
         try:
-            id            = request.POST["id"]
+            id                   = request.POST["id"]
             nombre_objeto        = request.POST["nombre"]
             precio_objeto        = request.POST["precio"]
             decripcion_objeto    = request.POST["descripcion"]
             imagen_objeto        = request.FILES["imagen"]
             #? tener en cuenta, para mysql y sqlite
             #? id_categoria = int(request.POST["id_categoria"])
-    #        id_categoria  = ObjectId(request.POST["id_categoria"]) #! para mongodb
+            id_categoria_formulario  = int(request.POST["idcategoria"]) #! para mongodb
 
 #            print("ID:", id)
 #            print("Nombre:", nombre_objeto)
@@ -109,7 +109,7 @@ def agregar_producto(request):
 #            print("Imagen:", imagen_objeto)
 #            print("ID de Categoría:", id_categoria)
 
-    #        categoria_objeto = Categoria.objects.get(pk=id_categoria)
+            categoria_objeto = Categoria.objects.get(id_categoria=id_categoria_formulario)
 
             producto=Producto.objects.create(
                 id_producto = id,
@@ -117,7 +117,7 @@ def agregar_producto(request):
                 precio      = precio_objeto,
                 descripcion = decripcion_objeto,
                 imagen      = imagen_objeto,
-    #            categoria   = categoria_objeto 
+                categoria   = categoria_objeto 
             )
             #? correccion 2 , salvar productos, sin eso ugial funciono que raro
             # linea nueva
@@ -165,10 +165,15 @@ def editar_producto(request):
     return render(request, "editar_producto.html", retorno  )
 
 
-def eliminar_producto(request):
+def eliminar_producto(request, nombre):
     try:
-        1
+        producto_eliminado= Producto.objects.get(nombre=nombre)
+
+        producto_eliminado.delete()
+
     except Error as error:
         mensaje=str(error)
+
+    return redirect("/lista_productos/")
 
 #todo fin de todo lo relacionado con productos (sin relaciones para evitar errores)
