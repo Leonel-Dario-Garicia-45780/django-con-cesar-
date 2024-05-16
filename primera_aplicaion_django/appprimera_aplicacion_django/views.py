@@ -28,10 +28,10 @@ def agregar_categoria(request):
     mensaje=""
     if request.method=='POST':
         try:
-            id= request.POST["id_categoria"]
+    # !       id= request.POST["id_categoria"]
             nombre = request.POST["nombre_categoria"]
             categoria= Categoria(
-                id_categoria=id,
+    # !           id_categoria=id,
                 get_nombre=nombre
                 )
             categoria.save()
@@ -93,7 +93,7 @@ def agregar_producto(request):
     mensaje=""
     if request.method=="POST":
         try:
-            id                   = request.POST["id"]
+    # !       id                   = request.POST["id"]
             nombre_objeto        = request.POST["nombre"]
             precio_objeto        = request.POST["precio"]
             decripcion_objeto    = request.POST["descripcion"]
@@ -102,17 +102,10 @@ def agregar_producto(request):
             #? id_categoria = int(request.POST["id_categoria"])
             id_categoria_formulario  = int(request.POST["idcategoria"]) #! para mongodb
 
-#            print("ID:", id)
-#            print("Nombre:", nombre_objeto)
-#            print("Precio:", precio_objeto)
-#            print("Descripción:", decripcion_objeto)
-#            print("Imagen:", imagen_objeto)
-#            print("ID de Categoría:", id_categoria)
-
-            categoria_objeto = Categoria.objects.get(id_categoria=id_categoria_formulario)
+            categoria_objeto = Categoria.objects.get(id=id_categoria_formulario)
 
             producto=Producto.objects.create(
-                id_producto = id,
+    #!            id_producto = id,
                 nombre      = nombre_objeto,
                 precio      = precio_objeto,
                 descripcion = decripcion_objeto,
@@ -140,11 +133,11 @@ def lista_productos(request):
     retorno={"productos":productos}
     return render(request, "lista_productos.html", retorno)
 
-def editar_producto(request):
+def editar_producto(request, id):
     try:
-        id_prodicto_editado= ObjectId(request.POST['id_producto'])
+        id_prodicto_editado= ObjectId(id)
 
-        producto_editado= Producto.objects.get(pk=id_prodicto_editado)
+        producto_editado= Producto.objects.get(id_producto=id_prodicto_editado)
         producto_editado.nombre=request.POST['nombre_producto_editado']
         producto_editado.precio=request.POST['precio_producto_editado']
         producto_editado.descripcion=request.POST['descripcion_producto_editado']

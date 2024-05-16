@@ -6,9 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    <a href='/'> inicio</a>
     <form action="/agregar_producto/" enctype="multipart/form-data" method="post">
         {% csrf_token %}
-        <input type="text" name="id"          id="id"          placeholder="id" >
+<!--         <input type="text" name="id"          id="id"          placeholder="id" > -->
         <input type="text" name="nombre"      id="nombre"      placeholder="nombre" >
         <input type="text" name="precio"      id="precio"      placeholder="precio" >
         <input type="text" name="descripcion" id="descripcion" placeholder="decripcion" >
@@ -18,7 +19,7 @@
             <option value="">categoria</option>  
             <!-- ?  correccion, se cambia el id por pk (en mongo)  -->
             {% for c in categorias %}
-                <option value="{{c.id_categoria }}">{{c.get_nombre}}</option>
+                <option value="{{c.id }}">{{c.get_nombre}}</option>
             {% endfor %}
         </select>  
         <button type="submit"> agregar producto </button>

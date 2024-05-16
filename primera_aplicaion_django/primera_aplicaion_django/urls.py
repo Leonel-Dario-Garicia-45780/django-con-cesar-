@@ -32,9 +32,9 @@ urlpatterns = [
     path('agregar_categoria/', views.agregar_categoria), # ruta de agregar categoria
 #    path('eliminar_categoria/<str:get_nombre>', views.eliminar_categoria   ),
     path('agregar_producto/',  views.agregar_producto ),
-    path('vista_agregar_producto/',  views.vista_agregar_productos),#? ruta gregada por el instructor Cesar
+#    path('vista_agregar_producto/',  views.vista_agregar_productos),#? ruta gregada por el instructor Cesar
     path('lista_productos/',   views.lista_productos  ),
-    path('editar_producto/',   views.editar_producto  ),
+    path('editar_producto/<int:id>',   views.editar_producto  ),
     path('eliminar_producto/<str:nombre>',   views.eliminar_producto  ),
 
 ]
